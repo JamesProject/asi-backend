@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
@@ -26,13 +27,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        // Passport::routes(function($router){
-        //     $router->forAccessTokens();
-        // });
-        //
-        // Route::prefix('api')->group(function () {
-        //     Passport::routes();
-        // });
         Passport::routes(null, ['prefix' => 'api/oauth']);
+        Passport::personalAccessTokensExpireIn(Carbon::now()->addHours(24));
     }
 }
