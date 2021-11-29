@@ -19,3 +19,9 @@
 - `php artisan migrate`
 - `php artisan db:seed`
 - `php artisan passport:install`
+# Generate Auth seed
+- `php artisan db:seed`
+
+###### Username and Password
+- `admin@admin.com`
+- `password`
