@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 // Passport::routes();
 Route::group([
-    'middleware' => ['api', 'auth:api'],
+    'middleware' => ['api', 'auth:api','web'],
     'prefix' => 'auth'
  ], function () {
+    Route::post('login',[\App\Http\Controllers\AuthController::class,'login'])->withoutMiddleware(['auth:api']);
     Route::post('logout',[\App\Http\Controllers\AuthController::class,'logout']);
-    //  Route::post('login', 'AuthController@login')->withoutMiddleware(['auth:api']);
-     Route::post('refresh',[\App\Http\Controllers\AuthController::class,'refresh'])->withoutMiddleware(['auth:api']);
-     Route::get('user', [\App\Http\Controllers\AuthController::class,'me']);
+    Route::post('refresh',[\App\Http\Controllers\AuthController::class,'refresh'])->withoutMiddleware(['auth:api']);
+    Route::get('user', [\App\Http\Controllers\AuthController::class,'me']);
  });
 
